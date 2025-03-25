@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приглашение на свадьбу</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: "Georgia", serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #fdf3e7, #f9e4c8);
+            color: #8B4513;
+        }
+        header {
+            background: url('wedding.jpg') center/cover no-repeat;
+            color: #fff;
+            padding: 60px 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        section {
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        form input, form button {
+            display: block;
+            margin: 10px auto;
+            padding: 12px;
+            width: 80%;
+            max-width: 300px;
+            border: 1px solid #8B4513;
+            border-radius: 8px;
+        }
+        form button {
+            background: #d4af37;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        form button:hover {
+            background: #b8860b;
+        }
+        h1 {
+            font-family: "Brush Script MT", cursive;
+            color: #fff;
+            font-size: 3em;
+        }
+        p, h2, ul, strong {
+            font-family: "Georgia", serif;
+            color: #5a3825;
+        }
+        #map a {
+            display: inline-block;
+            padding: 10px 15px;
+            background: #8B4513;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        #map a:hover {
+            background: #5a3825;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Герман & Владислава</h1>
+        <p>11 июля 2025 | Ставрополь</p>
+    </header>
+    
+    <section id="invitation">
+        <h2>Дорогие друзья!</h2>
+        <p>Мы рады пригласить вас на нашу свадьбу и будем счастливы разделить этот день с вами!</p>
+    </section>
+    
+    <section id="schedule">
+        <h2>Программа мероприятия</h2>
+        <ul>
+            <li>??:00 - Сбор гостей</li>
+            <li>18:00 - Банкет</li>
+            <li>22:00 - Танцы и веселье</li>
+        </ul>
+        <p><strong>Дресс-код:</strong> формальный</p>
+    </section>
+    
+    <section id="location">
+        <h2>Место проведения</h2>
+        <p>Ресторан "Кристалл", пр. Черняховского, 2А, микрорайон № 9, Ленинский район, Ставрополь</p>
+        <div id="map">
+            <a href="https://yandex.ru/maps/-/CHRe6M3d" target="_blank">Открыть карту</a>
+        </div>
+        <p>Контакты жениха: +7 (988) 098-34-07</p>
+    </section>
+    
+    <section id="rsvp">
+        <h2>Подтвердите участие</h2>
+        <form id="rsvp-form">
+            <input type="text" name="name" placeholder="Ваше имя" required>
+            <input type="number" name="guests" placeholder="Количество гостей" required>
+            <input type="tel" name="phone" placeholder="Ваш номер телефона (пример: +7XXXXXXXXXX)" pattern="\+7[0-9]{10}" required>
+            <button type="submit">Отправить</button>
+        </form>
+        <p id="response-message"></p>
+    </section>
+    
+    <script>
+        document.getElementById('rsvp-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('response-message').textContent = 'Спасибо за подтверждение!';
+            this.reset();
+        });
+    </script>
+</body>
+</html>
