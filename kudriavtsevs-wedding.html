@@ -11,8 +11,9 @@
             text-align: center;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom, #fdf3e7, #f9e4c8);
-            color: #8B4513;
+            background: url('floral-pattern.jpg') repeat, linear-gradient(to bottom, #f4ece6, #e8d9c9);
+            color: #5a3825;
+            scroll-behavior: smooth;
         }
         header {
             background: url('wedding.jpg') center/cover no-repeat;
@@ -24,9 +25,12 @@
             padding: 30px;
             margin: 20px auto;
             max-width: 800px;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
         }
         form input, form button {
             display: block;
@@ -34,18 +38,18 @@
             padding: 12px;
             width: 80%;
             max-width: 300px;
-            border: 1px solid #8B4513;
+            border: 1px solid #5a3825;
             border-radius: 8px;
         }
         form button {
-            background: #d4af37;
+            background: #c4a484;
             color: white;
             font-weight: bold;
             cursor: pointer;
             transition: background 0.3s;
         }
         form button:hover {
-            background: #b8860b;
+            background: #a37d5d;
         }
         h1 {
             font-family: "Brush Script MT", cursive;
@@ -59,14 +63,18 @@
         #map a {
             display: inline-block;
             padding: 10px 15px;
-            background: #8B4513;
+            background: #5a3825;
             color: white;
             border-radius: 8px;
             text-decoration: none;
             transition: background 0.3s;
         }
         #map a:hover {
-            background: #5a3825;
+            background: #3e2619;
+        }
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -116,6 +124,21 @@
             event.preventDefault();
             document.getElementById('response-message').textContent = 'Спасибо за подтверждение!';
             this.reset();
+        });
+        
+        document.addEventListener("DOMContentLoaded", function() {
+            const sections = document.querySelectorAll("section");
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    }
+                });
+            }, { threshold: 0.3 });
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
         });
     </script>
 </body>
