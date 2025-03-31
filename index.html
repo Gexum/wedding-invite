@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приглашение на свадьбу</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: "Georgia", serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background: url('floral-pattern.jpg') repeat, linear-gradient(to bottom, #f4ece6, #e8d9c9);
+            color: #5a3825;
+            scroll-behavior: smooth;
+        }
+        header {
+            background: url('wedding.jpg') center/cover no-repeat;
+            color: #fff;
+            padding: 60px 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        section {
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        form input, form button {
+            display: block;
+            margin: 10px auto;
+            padding: 12px;
+            width: 80%;
+            max-width: 300px;
+            border: 1px solid #5a3825;
+            border-radius: 8px;
+        }
+        form button {
+            background: #c4a484;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        form button:hover {
+            background: #a37d5d;
+        }
+        h1 {
+            font-family: "Brush Script MT", cursive;
+            color: #fff;
+            font-size: 3em;
+        }
+        p, h2, ul, strong {
+            font-family: "Georgia", serif;
+            color: #5a3825;
+        }
+        #map a {
+            display: inline-block;
+            padding: 10px 15px;
+            background: #5a3825;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        #map a:hover {
+            background: #3e2619;
+        }
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Герман & Владислава</h1>
+        <p>11 июля 2025 | Ставрополь</p>
+    </header>
+    
+    <section id="invitation">
+        <h2>Дорогие друзья!</h2>
+        <p>Мы рады пригласить вас на нашу свадьбу и будем счастливы разделить этот день с вами!</p>
+    </section>
+    
+    <section id="schedule">
+        <h2>Программа мероприятия</h2>
+        <ul>
+            <li>??:00 - Сбор гостей</li>
+            <li>18:00 - Банкет</li>
+            <li>22:00 - Танцы и веселье</li>
+        </ul>
+        <p><strong>Дресс-код:</strong> формальный</p>
+    </section>
+    
+    <section id="location">
+        <h2>Место проведения</h2>
+        <p>Ресторан "Кристалл", пр. Черняховского, 2А, микрорайон № 9, Ленинский район, Ставрополь</p>
+        <div id="map">
+            <a href="https://yandex.ru/maps/-/CHRe6M3d" target="_blank">Открыть карту</a>
+        </div>
+        <p>Контакты жениха: +7 (988) 098-34-07</p>
+    </section>
+    
+    <section id="rsvp">
+        <h2>Подтвердите участие</h2>
+        <form id="rsvp-form">
+            <input type="text" name="name" placeholder="Ваше имя" required>
+            <input type="number" name="guests" placeholder="Количество гостей" required>
+            <input type="tel" name="phone" placeholder="Ваш номер телефона (пример: +7XXXXXXXXXX)" pattern="\+7[0-9]{10}" required>
+            <button type="submit">Отправить</button>
+        </form>
+        <p id="response-message"></p>
+    </section>
+    
+    <script>
+        document.getElementById('rsvp-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('response-message').textContent = 'Спасибо за подтверждение!';
+            this.reset();
+        });
+        
+        document.addEventListener("DOMContentLoaded", function() {
+            const sections = document.querySelectorAll("section");
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    }
+                });
+            }, { threshold: 0.3 });
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
